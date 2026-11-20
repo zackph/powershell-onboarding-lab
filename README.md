@@ -34,4 +34,12 @@ The first apply on a clean lab should show `CreatedDisabled` for all three. The 
 
 ## Verification
 
-The preview, duplicate input rejection, directory conflict check, account creation, and repeat-run behavior passed against a simulated directory using Windows PowerShell 5.1. The live test script separately checks the actual directory on DC01.
+The preview, duplicate input rejection, directory conflict check, account creation, and repeat-run behavior passed against a simulated directory using Windows PowerShell 5.1. I then ran the end-to-end test on the actual DC01 domain controller.
+
+| Live check | Result |
+| --- | --- |
+| First apply | Created all three accounts as disabled (`CreatedDisabled`). |
+| Repeat apply | Skipped all three existing accounts (`SkippedExisting`). |
+| Active Directory readback | Verified Maya Chen, Jordan Rivera, and Taylor Reed under `training → Onboarding`. All three showed `Enabled: False`. |
+
+![DC01 PowerShell output showing three accounts created, skipped on a repeat run, and read back as disabled](onboarding-live-verification.png)
